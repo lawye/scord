@@ -25,13 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/PlayerDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-    </list>
+    <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594222071854</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="hashmap">
+      <created>1594300545828</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594300545828</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,7 +138,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="hashmap" />
+    <option name="LAST_COMMIT_MESSAGE" value="hashmap" />
   </component>
   <component name="WindowStateProjectService">
     <state x="668" y="340" key="FileChooserDialogImpl" timestamp="1594281362147">
@@ -164,5 +166,9 @@
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1594281364679" />
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594300568853">
+      <screen x="56" y="0" width="1864" height="1080" />
+    </state>
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594300568853" />
   </component>
 </project>
