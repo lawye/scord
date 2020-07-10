@@ -27,8 +27,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/PlayerDB.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594300661396</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="排序，输入输出完成">
+      <created>1594317538986</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1594317538986</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,29 +167,29 @@
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="668" y="340" key="FileChooserDialogImpl/56.0.1864.1080@56.0.1864.1080" timestamp="1594281362147" />
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594300840480">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594404960135">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594300840480" />
-    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594300840479">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960135" />
+    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594404960131">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594300840479" />
-    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594300840478">
+    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960131" />
+    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594404960129">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594300840478" />
-    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594300840479">
+    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960129" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594404960132">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594300840479" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960132" />
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor" timestamp="1594281364679">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1594281364679" />
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594300676310">
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594317559105">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594300676310" />
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594317559105" />
   </component>
 </project>

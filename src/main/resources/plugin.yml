@@ -1,3 +1,15 @@
 name: Scord
 main: io.github.lawye.scord.Scord
 version: 1.0
+api-version: 1.16
+author: lawye
+website: lawye.github.io
+commands:
+  scord:
+    description: turn on or turn off players scoreboard display.
+    usage: /<command> [on|off]
+    permission: scord.basic
+    permission-message: ask op for the permission
+permissions:
+  scord.*:
+  scord.basic:
