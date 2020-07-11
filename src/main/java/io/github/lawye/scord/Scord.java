@@ -16,17 +16,108 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.*;
 
 public final class Scord extends JavaPlugin implements Listener{
     public final String DataURL = getDataFolder() + File.separator + "data.db";
     public final String PlayerSettingURL = getDataFolder()+File.separator+"player_setting.db";
     public HashMap<String,Integer> Data = new HashMap<String, Integer>();
     public HashMap<String,Integer> PlayerSetting = new HashMap<String, Integer>();
+    /*
+    public List<String> list=new List<String>() {
+        public int size() {
+            return 0;
+        }
 
+        public boolean isEmpty() {
+            return false;
+        }
+
+        public boolean contains(Object o) {
+            return false;
+        }
+
+        public Iterator<String> iterator() {
+            return null;
+        }
+
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        public <T> T[] toArray(T[] ts) {
+            return null;
+        }
+
+        public boolean add(String s) {
+            return false;
+        }
+
+        public boolean remove(Object o) {
+            return false;
+        }
+
+        public boolean containsAll(Collection<?> collection) {
+            return false;
+        }
+
+        public boolean addAll(Collection<? extends String> collection) {
+            return false;
+        }
+
+        public boolean addAll(int i, Collection<? extends String> collection) {
+            return false;
+        }
+
+        public boolean removeAll(Collection<?> collection) {
+            return false;
+        }
+
+        public boolean retainAll(Collection<?> collection) {
+            return false;
+        }
+
+        public void clear() {
+
+        }
+
+        public String get(int i) {
+            return null;
+        }
+
+        public String set(int i, String s) {
+            return null;
+        }
+
+        public void add(int i, String s) {
+
+        }
+
+        public String remove(int i) {
+            return null;
+        }
+
+        public int indexOf(Object o) {
+            return 0;
+        }
+
+        public int lastIndexOf(Object o) {
+            return 0;
+        }
+
+        public ListIterator<String> listIterator() {
+            return null;
+        }
+
+        public ListIterator<String> listIterator(int i) {
+            return null;
+        }
+
+        public List<String> subList(int i, int i1) {
+            return null;
+        }
+    };
+*/
     @Override
     public void onEnable(){
         getLogger().info("Scord start initialize");
@@ -35,11 +126,11 @@ public final class Scord extends JavaPlugin implements Listener{
         File folder=getDataFolder();
         if(!folder.exists() && !folder.isDirectory()){
             folder.mkdirs();
-            getLogger().info("dir made");
+            //getLogger().info("dir made");
         }
         if (data_db.exists()){
             Data = loadDB(DataURL);
-            getLogger().info("read Data");
+            //getLogger().info("read Data");
         }else{
             try {
                 if(data_db.createNewFile()) getLogger().info("new DataBase");
@@ -50,7 +141,7 @@ public final class Scord extends JavaPlugin implements Listener{
         File setting_db = new File(PlayerSettingURL);
         if (setting_db.exists()){
             PlayerSetting = loadDB(PlayerSettingURL);
-            getLogger().info("setting read");
+            //getLogger().info("setting read");
         }else{
             try {
                 setting_db.createNewFile();
@@ -58,12 +149,12 @@ public final class Scord extends JavaPlugin implements Listener{
                 e.printStackTrace();
             }
         }
-        getLogger().info("read all, adding him");
-        Data.put("Herobine",-1);
-        PlayerSetting.put("Herobine",0);
-        getLogger().info("him is here");
+        //getLogger().info("read all, adding him");
+        //Data.put("Herobine",-1);
+        //PlayerSetting.put("Herobine",0);
+        //getLogger().info("him is here");
         update_board(first());
-        getLogger().info("done");
+        getLogger().info("plugin loaded");
     }
     @Override
     public void onDisable(){
@@ -135,12 +226,11 @@ public final class Scord extends JavaPlugin implements Listener{
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
         Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
-        if(tool==Material.WOODEN_PICKAXE || tool==Material.STONE_PICKAXE || tool==Material.GOLDEN_PICKAXE || tool==Material.DIAMOND_PICKAXE || tool==Material.NETHERITE_PICKAXE){
-            System.out.print("block break");
+        if(tool==Material.WOODEN_PICKAXE || tool==Material.STONE_PICKAXE || tool==Material.IRON_PICKAXE || tool==Material.GOLDEN_PICKAXE || tool==Material.DIAMOND_PICKAXE || tool==Material.NETHERITE_PICKAXE){
             Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
             saveDB(Data,DataURL);
             update_board(first());
-
+            //tab_board();
         }
     }
 
@@ -150,31 +240,61 @@ public final class Scord extends JavaPlugin implements Listener{
             Data.put(event.getPlayer().getName(),0);
             PlayerSetting.put(event.getPlayer().getName(),1);
         }
+
         update_board(first());
+        //tab_board();
     }
+
+/*
+    public void set_board(Player player){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getNewScoreboard();
+        Objective obj = scoreboard.registerNewObjective("Servername", "dummy", "Test Server");
+        obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+    }
+*/
+
+    /*
+    public void tab_board(){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getNewScoreboard();
+        for(Player player : Bukkit.getOnlinePlayers()){
+            Objective obj = scoreboard.registerNewObjective("Scordtab","dummy","tabtable");
+            obj.setDisplaySlot(DisplaySlot.PLAYER_LIST);
+            obj.getScore(player.getName()).setScore(Data.get(player.getName()));
+            player.setScoreboard(scoreboard);
+        }
+    }
+
+     */
 
     public void update_board(List<String> leader){
         ScoreboardManager manager=Bukkit.getScoreboardManager();
         assert manager != null;
         Scoreboard scoreboard = manager.getNewScoreboard();
         Scoreboard empty = manager.getNewScoreboard();
-        for (Player nw : Bukkit.getOnlinePlayers()) {
-            if(true){
-            //if (PlayerSetting.get(nw.getName()) == 1) {
-                Objective obj = scoreboard.registerNewObjective("scord", "dummy", ChatColor.AQUA + "挖掘榜");
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            //Scoreboard scoreboard = player.getScoreboard();
+            //if(true){
+            if (PlayerSetting.get(player.getName()) == 1) {
+                //getLogger().info("开始启动"+player.getName()+"的榜");
+                Objective obj = scoreboard.registerNewObjective("scord", "dummy", ChatColor.AQUA + "挖掘榜", RenderType.HEARTS);
+                obj.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(leader.size()<1){
-                    getLogger().info("没人可以排");
+                    //getLogger().info("没人可以排");
                     return;
                 }else {
                     int n = leader.size();
                     int i =1;
                     for(String name:leader){
-                        obj.getScore("§fNo." + i + ": §b" + name + " §e" + Data.get(name)).setScore(n - i);
+                        obj.getScore("§fNo." + i + ": §r" + name + " §e" + Data.get(name)).setScore(n - i+1);
+                        //getLogger().info("初始化"+i);
                         i++;
                     }
-                    obj.getScore("§fme<" + nw.getName() + ">: §6" + Data.get(nw.getName())).setScore(0);
-                    getLogger().info("现在应该ok");
-                    nw.setScoreboard(scoreboard);
+                    obj.getScore("§f<" + player.getName() + ">: §6" + Data.get(player.getName())).setScore(0);
+                    //getLogger().info(player.getName()+" score "+ Data.get(player.getName())+" settings "+ PlayerSetting.get(player.getName()));
+                    //getLogger().info("现在应该ok");
+                    player.setScoreboard(scoreboard);
                 }
                 /*
                 if (leader.size() >= 5) {
@@ -193,7 +313,7 @@ public final class Scord extends JavaPlugin implements Listener{
 
                  */
             } else {
-                nw.setScoreboard(empty);
+                player.setScoreboard(empty);
             }
         }
     }
@@ -214,7 +334,7 @@ public final class Scord extends JavaPlugin implements Listener{
     }
 */
     public List<String> first(){
-        List<String> list= Lists.newArrayList(Data.keySet().iterator().next());
+        List<String> list= Lists.newArrayList();
         Map<String,Integer> map = Data;
         for(Map.Entry<String, Integer> entry : map.entrySet()){
             if(list.isEmpty()){

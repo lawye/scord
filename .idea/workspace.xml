@@ -26,9 +26,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594317538986</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="trash code">
+      <created>1594406596338</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1594406596339</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -160,36 +172,37 @@
     <MESSAGE value="hashmap" />
     <MESSAGE value="hashmap2" />
     <MESSAGE value="排序，输入输出完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="排序，输入输出完成" />
+    <MESSAGE value="trash code" />
+    <option name="LAST_COMMIT_MESSAGE" value="trash code" />
   </component>
   <component name="WindowStateProjectService">
     <state x="668" y="340" key="FileChooserDialogImpl" timestamp="1594281362147">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="668" y="340" key="FileChooserDialogImpl/56.0.1864.1080@56.0.1864.1080" timestamp="1594281362147" />
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594404960135">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594461629260">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960135" />
-    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594404960131">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629260" />
+    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594461629258">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960131" />
-    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594404960129">
+    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629258" />
+    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594461629257">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960129" />
-    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594404960132">
+    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629257" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594461629259">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594404960132" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629259" />
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor" timestamp="1594281364679">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1594281364679" />
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594317559105">
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594406629389">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594317559105" />
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594406629389" />
   </component>
 </project>
