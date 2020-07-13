@@ -8,4 +8,18 @@ commands:
   scord:
     description: turn on or turn off players scoreboard display.
     usage: /<command> [on|off]
-
+  scordset:
+    description: settings for Scord
+    usage: /<command> [num|data] (user) num
+permissions:
+  scord.*:
+    description: anything
+    children: :
+      scord.set: true
+      scord.basic: true
+  scord.set:
+    description: Set leader's number and user's
+    default: op
+  scord.basic:
+    description: Set show the board or not
+    default: true

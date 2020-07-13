@@ -2,6 +2,7 @@ package io.github.lawye.scord;
 
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
 
 
 import com.google.common.collect.Lists;
@@ -10,6 +11,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,106 +21,22 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.*;
 
+import javax.security.auth.login.Configuration;
+
 public final class Scord extends JavaPlugin implements Listener{
     public final String DataURL = getDataFolder() + File.separator + "data.db";
     public final String PlayerSettingURL = getDataFolder()+File.separator+"player_setting.db";
+    //public final String ConfigURL = getDataFolder() + File.separator + "config.yml";
+
     public HashMap<String,Integer> Data = new HashMap<String, Integer>();
     public HashMap<String,Integer> PlayerSetting = new HashMap<String, Integer>();
-    /*
-    public List<String> list=new List<String>() {
-        public int size() {
-            return 0;
-        }
 
-        public boolean isEmpty() {
-            return false;
-        }
+    //public int NUM = 5;
+    //public FileConfiguration CONFIG;
 
-        public boolean contains(Object o) {
-            return false;
-        }
+    private FileConfiguration customConfig = null;
+    private File customConfigFile = null;
 
-        public Iterator<String> iterator() {
-            return null;
-        }
-
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        public <T> T[] toArray(T[] ts) {
-            return null;
-        }
-
-        public boolean add(String s) {
-            return false;
-        }
-
-        public boolean remove(Object o) {
-            return false;
-        }
-
-        public boolean containsAll(Collection<?> collection) {
-            return false;
-        }
-
-        public boolean addAll(Collection<? extends String> collection) {
-            return false;
-        }
-
-        public boolean addAll(int i, Collection<? extends String> collection) {
-            return false;
-        }
-
-        public boolean removeAll(Collection<?> collection) {
-            return false;
-        }
-
-        public boolean retainAll(Collection<?> collection) {
-            return false;
-        }
-
-        public void clear() {
-
-        }
-
-        public String get(int i) {
-            return null;
-        }
-
-        public String set(int i, String s) {
-            return null;
-        }
-
-        public void add(int i, String s) {
-
-        }
-
-        public String remove(int i) {
-            return null;
-        }
-
-        public int indexOf(Object o) {
-            return 0;
-        }
-
-        public int lastIndexOf(Object o) {
-            return 0;
-        }
-
-        public ListIterator<String> listIterator() {
-            return null;
-        }
-
-        public ListIterator<String> listIterator(int i) {
-            return null;
-        }
-
-        public List<String> subList(int i, int i1) {
-            return null;
-        }
-    };
-*/
     @Override
     public void onEnable(){
         getLogger().info("Scord start initialize");
@@ -135,7 +54,8 @@ public final class Scord extends JavaPlugin implements Listener{
             try {
                 if(data_db.createNewFile()) getLogger().info("new DataBase");
             } catch (IOException e) {
-                e.printStackTrace();
+                getLogger().log(Level.SEVERE,"Could not save DataBase to " + DataURL,e);
+                //e.printStackTrace();
             }
         }
         File setting_db = new File(PlayerSettingURL);
@@ -146,16 +66,19 @@ public final class Scord extends JavaPlugin implements Listener{
             try {
                 setting_db.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+                getLogger().log(Level.SEVERE,"Could not save User_Setting_Data to " + PlayerSettingURL,e);
+                //e.printStackTrace();
             }
         }
         //getLogger().info("read all, adding him");
         //Data.put("Herobine",-1);
         //PlayerSetting.put("Herobine",0);
         //getLogger().info("him is here");
+        getCommand("scord").setExecutor(new ScordCommandExecutor(this));
         update_board(first());
         getLogger().info("plugin loaded");
     }
+
     @Override
     public void onDisable(){
         getLogger().info("Scord shutdown, backing up");
@@ -212,6 +135,7 @@ public final class Scord extends JavaPlugin implements Listener{
             return null;
         }
     }
+
     public void saveDB(HashMap<String,Integer> map, String URL){
         try{
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(URL));
@@ -220,6 +144,46 @@ public final class Scord extends JavaPlugin implements Listener{
             oos.close();
         }catch (Exception err){
             err.printStackTrace();
+        }
+    }
+
+    public void saveDefaultConfig(){
+        if(customConfigFile ==null){
+            customConfigFile = new File(getDataFolder(),"config.yml");
+        }
+        if(!customConfigFile.exists()){
+            saveResource("config.yml",false);
+        }
+    }
+
+    public void saveCustomConfig(){
+        if(customConfig ==null || customConfigFile == null){
+            return;
+        }else{
+            try{
+                getCustomConfig().save(customConfigFile);
+            }catch (IOException err){
+                getLogger().log(Level.SEVERE,"Could not save config to " + customConfigFile, err);
+            }
+        }
+    }
+
+    public FileConfiguration getCustomConfig() {
+        if(customConfig ==null){
+            reloadCustomConfig();
+        }
+        return customConfig;
+    }
+
+    public void reloadCustomConfig() {
+        if(customConfigFile == null){
+            customConfigFile=new File(getDataFolder(),"config.yml");
+        }
+        customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
+        Reader defCustomStream = new InputStreamReader(this.getResource("config.yml"),"UTF8");
+        if(defCustomStream != null){
+            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defCustomStream);
+            customConfig.setDefaults(defConfig);
         }
     }
 
@@ -252,9 +216,7 @@ public final class Scord extends JavaPlugin implements Listener{
         Objective obj = scoreboard.registerNewObjective("Servername", "dummy", "Test Server");
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
     }
-*/
 
-    /*
     public void tab_board(){
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
@@ -278,7 +240,7 @@ public final class Scord extends JavaPlugin implements Listener{
             //if(true){
             if (PlayerSetting.get(player.getName()) == 1) {
                 //getLogger().info("开始启动"+player.getName()+"的榜");
-                Objective obj = scoreboard.registerNewObjective("scord", "dummy", ChatColor.AQUA + "挖掘榜", RenderType.HEARTS);
+                Objective obj = scoreboard.registerNewObjective("scord", "dummy", getCustomConfig().getString("title").replace("&","§"), RenderType.HEARTS);
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(leader.size()<1){
                     //getLogger().info("没人可以排");
@@ -287,7 +249,7 @@ public final class Scord extends JavaPlugin implements Listener{
                     int n = leader.size();
                     int i =1;
                     for(String name:leader){
-                        obj.getScore("§fNo." + i + ": §r" + name + " §e" + Data.get(name)).setScore(n - i+1);
+                        obj.getScore(getCustomConfig().getString("numberprefix") + i + getCustomConfig().getString("nameprefix") + name + getCustomConfig().getString("scoreprefix") + Data.get(name)).setScore(n - i+1);
                         //getLogger().info("初始化"+i);
                         i++;
                     }
@@ -334,12 +296,17 @@ public final class Scord extends JavaPlugin implements Listener{
     }
 */
     public List<String> first(){
+        int NUM = 5;
+        NUM = getCustomConfig().getInt("maxmiumleaders");
+
+        List blacklist = getCustomConfig().getList("blacklist");
         List<String> list= Lists.newArrayList();
         Map<String,Integer> map = Data;
         for(Map.Entry<String, Integer> entry : map.entrySet()){
+            if(blacklist.contains(entry.getKey()))continue;
             if(list.isEmpty()){
                 list.add(entry.getKey());
-            }else if(list.size()<5){
+            }else if(list.size()<NUM){
                 boolean flag=true;
                 for(int i=0;i<list.size();i++){
                     if(Data.get(list.get(i))<entry.getValue()){
@@ -352,10 +319,10 @@ public final class Scord extends JavaPlugin implements Listener{
                     list.add(entry.getKey());
                 }
             }else {
-                for(int i=0;i<5;i++){
+                for(int i=0;i<NUM;i++){
                     if(Data.get(list.get(i))<entry.getValue()){
                         list.add(i,entry.getKey());
-                        list.remove(5);
+                        list.remove(NUM);
                         break;
                     }
                 }

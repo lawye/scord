@@ -26,15 +26,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/ScordCommandExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/customConfig.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/scord-1.0-SNAPSHOT.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594406596339</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="1.0">
+      <created>1594461665989</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1594461665989</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,36 +177,37 @@
     <MESSAGE value="hashmap2" />
     <MESSAGE value="排序，输入输出完成" />
     <MESSAGE value="trash code" />
-    <option name="LAST_COMMIT_MESSAGE" value="trash code" />
+    <MESSAGE value="1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="668" y="340" key="FileChooserDialogImpl" timestamp="1594281362147">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="668" y="340" key="FileChooserDialogImpl/56.0.1864.1080@56.0.1864.1080" timestamp="1594281362147" />
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594461629260">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594461938124">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629260" />
-    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594461629258">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594461938124" />
+    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594461938123">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629258" />
-    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594461629257">
+    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594461938123" />
+    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594461938122">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629257" />
-    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594461629259">
+    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594461938122" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594461938123">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594461629259" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594461938123" />
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor" timestamp="1594281364679">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1594281364679" />
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594406629389">
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594461921248">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594406629389" />
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594461921248" />
   </component>
 </project>
