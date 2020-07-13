@@ -26,10 +26,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4bccd017-8b59-42a2-b431-b5935aceda16" name="Default Changelist" comment="init">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/lawye/scord/Scord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/github/lawye/scord/Scord.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594633380872</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="adding command&#10;too many if which makes me confuse">
+      <created>1594657138190</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1594657138190</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,36 +192,37 @@
     <MESSAGE value="trash code" />
     <MESSAGE value="1.0" />
     <MESSAGE value="add config support" />
-    <option name="LAST_COMMIT_MESSAGE" value="add config support" />
+    <MESSAGE value="adding command&#10;too many if which makes me confuse" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding command&#10;too many if which makes me confuse" />
   </component>
   <component name="WindowStateProjectService">
     <state x="668" y="340" key="FileChooserDialogImpl" timestamp="1594281362147">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="668" y="340" key="FileChooserDialogImpl/56.0.1864.1080@56.0.1864.1080" timestamp="1594281362147" />
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594654209838">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom" timestamp="1594657340806">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594654209838" />
-    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594654209838">
+    <state width="1816" height="286" key="GridCell.Tab.0.bottom/56.0.1864.1080@56.0.1864.1080" timestamp="1594657340806" />
+    <state width="1816" height="286" key="GridCell.Tab.0.center" timestamp="1594657340803">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594654209838" />
-    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594654209838">
+    <state width="1816" height="286" key="GridCell.Tab.0.center/56.0.1864.1080@56.0.1864.1080" timestamp="1594657340803" />
+    <state width="1816" height="286" key="GridCell.Tab.0.left" timestamp="1594657340801">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594654209838" />
-    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594654209838">
+    <state width="1816" height="286" key="GridCell.Tab.0.left/56.0.1864.1080@56.0.1864.1080" timestamp="1594657340801" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right" timestamp="1594657340805">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594654209838" />
+    <state width="1816" height="286" key="GridCell.Tab.0.right/56.0.1864.1080@56.0.1864.1080" timestamp="1594657340805" />
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor" timestamp="1594281364679">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
     <state x="56" y="0" width="1864" height="1080" key="SettingsEditor/56.0.1864.1080@56.0.1864.1080" timestamp="1594281364679" />
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594633400501">
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2" timestamp="1594657147742">
       <screen x="56" y="0" width="1864" height="1080" />
     </state>
-    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594633400501" />
+    <state x="588" y="276" key="Vcs.Push.Dialog.v2/56.0.1864.1080@56.0.1864.1080" timestamp="1594657147742" />
   </component>
 </project>

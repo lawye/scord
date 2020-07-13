@@ -99,6 +99,138 @@ public final class Scord extends JavaPlugin implements Listener{
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         String wrargs = "you type in wrong arguments";
         String pmsion = "you don't have permission to access this command";
+        String tfargs = "there is too few arguments";
+        String tmargs = "there is too many arguments";
+        List<String> yaml=new ArrayList<String>(Arrays.asList("title","numberprefix","maxmiumleaders","nameprefix"));
+        if(cmd.getName().equalsIgnoreCase("scord")){
+            if(args.length==0){
+                sender.sendMessage(tfargs);
+                //TODO: 切换成介绍文字
+                return false;
+            }
+            if(args[0].equalsIgnoreCase("on") || args[0].equalsIgnoreCase("true") || args[0].equalsIgnoreCase("1")){
+                if(sender instanceof Player){
+                    if(sender.hasPermission("scord.basic")){
+                        if(args.length==1){
+                            PlayerSetting.put(sender.getName(), 1);
+                        }else{
+                            sender.sendMessage("too many arguments");
+                            return false;
+                        }    
+                    }else{
+                        sender.sendMessage(pmsion);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage("you must be a player to run this command");
+                    return false;
+                }
+            }else if(args[0].equalsIgnoreCase("off") || args[0].equalsIgnoreCase("false") || args[0].equalsIgnoreCase("0")){
+                if(sender instanceof Player){
+                    if(sender.hasPermission("scord.basic")){
+                        if(args.length==1){
+                            PlayerSetting.put(sender.getName(), 0);
+                        }else{
+                            sender.sendMessage("too many arguments");
+                            return false;
+                        }    
+                    }else{
+                        sender.sendMessage(pmsion);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage("you must be a player to run this command");
+                    return false;
+                }
+            }else if(args[0].equalsIgnoreCase("player")){
+                if(sender.hasPermission("scord.set")){
+                    if(args.length==4){
+                        if(args[2].equalsIgnoreCase("score")){
+                            Data.put(args[1], Integer.parseInt(args[3]));
+                            return true;
+                        }else if(args[2].equalsIgnoreCase("config")){
+                            if(args[3].equalsIgnoreCase("true") || args[3].equalsIgnoreCase("on") || args[3].equals("1")){
+                                PlayerSetting.put(args[1], 1);
+                                return true;
+                            }else if(args[3].equalsIgnoreCase("false") || args[3].equalsIgnoreCase("off") || args[3].equals("1")){
+                                PlayerSetting.put(args[1], 0);
+                                return true;
+                            }else{
+                                sender.sendMessage(wrargs);
+                                return false;
+                            }
+                        }else{
+                            sender.sendMessage(wrargs);
+                            return false;
+                        }
+                    }else if(args.length<4){
+                        sender.sendMessage(tfargs);
+                        return false;
+                    }else{
+                        sender.sendMessage(tmargs);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage(pmsion);
+                    return false;
+                }
+            }else if(args[0].equalsIgnoreCase("board")){
+                if(sender.hasPermission("scord.set")){
+                    if(args.length==4){
+                        if(args[2].equalsIgnoreCase("set")){
+                            if(yaml.contains(args[1])){
+                                customConfig.set(args[1], args[3]);
+                                saveCustomConfig();
+                                return true;
+                            }else{
+                                sender.sendMessage(wrargs);
+                                return false;
+                            }
+                        }else{
+                            sender.sendMessage(wrargs);
+                            return false;
+                        }
+                    }else if(args.length<4){
+                        sender.sendMessage(tfargs);
+                        return false;
+                    }else{
+                        sender.sendMessage(tmargs);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage(pmsion);
+                    return false;
+                }
+            }else if(args[0].equalsIgnoreCase("blacklist")){
+                if(sender.hasPermission("scord.set")){
+                    if(args.length==3){
+                        if(args[1].equalsIgnoreCase("add")){
+                            customConfig.set("blacklist", customConfig.get("blacklist"));
+                        }else if(args[1].equalsIgnoreCase("remove")){
+
+                        }else if(args[1].equalsIgnoreCase("find") || args[1].equalsIgnoreCase("isin")){
+
+                        }else{
+                            sender.sendMessage(wrargs);
+                            return false;
+                        }
+                    }else if(args.length<3){
+                        sender.sendMessage(tfargs);
+                        return false;
+                    }else{
+                        sender.sendMessage(tmargs);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage(pmsion);
+                    return false;
+                }
+            }
+        }else{
+            sender.sendMessage(wrargs);
+            return false;
+        }
+        /*
         if(cmd.getName().equalsIgnoreCase("scord")){
             if(args.length==1){
                 if(sender instanceof Player){
@@ -173,6 +305,7 @@ public final class Scord extends JavaPlugin implements Listener{
                 }
             }
         }
+        */
         /*
         if(sender instanceof Player){
             Player player = (Player)sender;
@@ -210,11 +343,13 @@ public final class Scord extends JavaPlugin implements Listener{
         try{
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(url));
             Object result = ois.readObject();
+            ois.close();
             return (HashMap<String,Integer>)result;
         }catch(Exception err){
             err.printStackTrace();
             return null;
         }
+
     }
 
     public void saveDB(HashMap<String,Integer> map, String URL){
