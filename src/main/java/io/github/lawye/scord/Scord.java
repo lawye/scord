@@ -74,7 +74,9 @@ public final class Scord extends JavaPlugin implements Listener{
         //Data.put("Herobine",-1);
         //PlayerSetting.put("Herobine",0);
         //getLogger().info("him is here");
-        getCommand("scord").setExecutor(new ScordCommandExecutor(this));
+        saveDefaultConfig();
+        saveCustomConfig();
+        //getCommand("scord").setExecutor(new ScordCommandExecutor(this));
         update_board(first());
         getLogger().info("plugin loaded");
     }
@@ -95,6 +97,83 @@ public final class Scord extends JavaPlugin implements Listener{
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        String wrargs = "you type in wrong arguments";
+        String pmsion = "you don't have permission to access this command";
+        if(cmd.getName().equalsIgnoreCase("scord")){
+            if(args.length==1){
+                if(sender instanceof Player){
+                    if(sender.hasPermission("scord.basic")){
+                        if(args[0].equalsIgnoreCase("true") || args[0].equalsIgnoreCase("on") || args[0].equals("1")){
+                            PlayerSetting.put(sender.getName(),1);
+                            update_board(first());
+                            return true;
+                        }else if(args[0].equalsIgnoreCase("off") || args[0].equalsIgnoreCase("false") || args[0].equals("0")){
+                            PlayerSetting.put(sender.getName(),0);
+                            update_board(first());
+                            return true;
+                        }else{
+                            sender.sendMessage(wrargs);
+                            return false;
+                        }
+                    }else{
+                        sender.sendMessage(pmsion);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage("you must be a player to run this command");
+                    return false;
+                }
+            }else{
+                if(args[0].equalsIgnoreCase("player")){
+                    if (sender.hasPermission("scord.set")){
+                        if(args.length==4){
+                            if(args[0].equalsIgnoreCase("player")){
+                                if(args[2].equalsIgnoreCase("score") || args[2].equalsIgnoreCase("scores")){
+                                    Data.put(args[1],Integer.parseInt(args[3]));
+                                    update_board(first());
+                                    return true;
+                                }else if(args[2].equalsIgnoreCase("config")){
+                                    if(args[3].equalsIgnoreCase("true") || args[3].equalsIgnoreCase("on") || args[3].equals("1")){
+                                        PlayerSetting.put(args[1],1);
+                                        update_board(first());
+                                        return true;
+                                    }else if(args[3].equalsIgnoreCase("off") || args[3].equalsIgnoreCase("false") || args[3].equals("0")){
+                                        PlayerSetting.put(args[1],0);
+                                        update_board(first());
+                                        return true;
+                                    }else{
+                                        sender.sendMessage(wrargs);
+                                        return false;
+                                    }
+                                }else{
+                                    sender.sendMessage(wrargs);
+                                    return false;
+                                }
+                            }else if (args[0].equalsIgnoreCase("board")){
+                                return false;
+                            }else{
+                                sender.sendMessage(wrargs);
+                                return false;
+                            }
+                        }else if (args.length==3){
+                            if (args[0].equalsIgnoreCase("blacklist")){
+
+                            }else{
+                                sender.sendMessage(wrargs);
+                                return false;
+                            }
+                        }else{
+                            sender.sendMessage(wrargs);
+                            return false;
+                        }
+                    }else{
+                        sender.sendMessage(pmsion);
+                        return false;
+                    }
+                }
+            }
+        }
+        /*
         if(sender instanceof Player){
             Player player = (Player)sender;
             if(cmd.getName().equalsIgnoreCase("scord")){
@@ -122,6 +201,8 @@ public final class Scord extends JavaPlugin implements Listener{
             sender.sendMessage("You must be a Player");
             return false;
         }
+
+         */
         return false;
     }
 
@@ -168,14 +249,18 @@ public final class Scord extends JavaPlugin implements Listener{
         }
     }
 
-    public FileConfiguration getCustomConfig() {
+    public FileConfiguration getCustomConfig(){
         if(customConfig ==null){
-            reloadCustomConfig();
+            try {
+                reloadCustomConfig();
+            }catch (UnsupportedEncodingException err){
+                getLogger().log(Level.SEVERE,"unable to read data from jar",err);
+            }
         }
         return customConfig;
     }
 
-    public void reloadCustomConfig() {
+    public void reloadCustomConfig() throws UnsupportedEncodingException {
         if(customConfigFile == null){
             customConfigFile=new File(getDataFolder(),"config.yml");
         }
@@ -208,8 +293,7 @@ public final class Scord extends JavaPlugin implements Listener{
         update_board(first());
         //tab_board();
     }
-
-/*
+        /*
     public void set_board(Player player){
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
@@ -249,7 +333,7 @@ public final class Scord extends JavaPlugin implements Listener{
                     int n = leader.size();
                     int i =1;
                     for(String name:leader){
-                        obj.getScore(getCustomConfig().getString("numberprefix") + i + getCustomConfig().getString("nameprefix") + name + getCustomConfig().getString("scoreprefix") + Data.get(name)).setScore(n - i+1);
+                        obj.getScore(getCustomConfig().getString("numberprefix").replace("&","§") + i + getCustomConfig().getString("nameprefix").replace("&","§") + name + getCustomConfig().getString("scoreprefix").replace("&","§") + Data.get(name)).setScore(n - i+1);
                         //getLogger().info("初始化"+i);
                         i++;
                     }
@@ -297,8 +381,9 @@ public final class Scord extends JavaPlugin implements Listener{
 */
     public List<String> first(){
         int NUM = 5;
-        NUM = getCustomConfig().getInt("maxmiumleaders");
-
+        if(getCustomConfig().getInt("maxmiumleaders")>0){
+            NUM = getCustomConfig().getInt("maxmiumleaders");
+        }
         List blacklist = getCustomConfig().getList("blacklist");
         List<String> list= Lists.newArrayList();
         Map<String,Integer> map = Data;
