@@ -7,7 +7,6 @@ import java.util.logging.Level;
 
 import com.google.common.collect.Lists;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,8 +19,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.*;
-
-import javax.security.auth.login.Configuration;
 
 public final class Scord extends JavaPlugin implements Listener{
     public final String DataURL = getDataFolder() + File.separator + "data.db";
@@ -204,12 +201,17 @@ public final class Scord extends JavaPlugin implements Listener{
             }else if(args[0].equalsIgnoreCase("blacklist")){
                 if(sender.hasPermission("scord.set")){
                     if(args.length==3){
+                        List<String> list = getCustomConfig().getList("blacklist", new ArrayList<String>());
                         if(args[1].equalsIgnoreCase("add")){
-                            customConfig.set("blacklist", customConfig.get("blacklist"));
+                            list.add(args[2]);
+                            getCustomConfig().set("blacklist", list);
+                            saveCustomConfig();
                         }else if(args[1].equalsIgnoreCase("remove")){
-
+                            list.remove(args[2]);
+                            getCustomConfig().set("blacklist",list);
+                            saveCustomConfig();
                         }else if(args[1].equalsIgnoreCase("find") || args[1].equalsIgnoreCase("isin")){
-
+                            sender.sendMessage("player" + args[2] + "is in blacklist: " + list.contains(args[2]));
                         }else{
                             sender.sendMessage(wrargs);
                             return false;
@@ -344,7 +346,11 @@ public final class Scord extends JavaPlugin implements Listener{
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(url));
             Object result = ois.readObject();
             ois.close();
-            return (HashMap<String,Integer>)result;
+            if(result instanceof HashMap){
+                return (HashMap<String,Integer>)result;
+            }else{
+                return new HashMap<String,Integer>();
+            }
         }catch(Exception err){
             err.printStackTrace();
             return null;
@@ -389,7 +395,7 @@ public final class Scord extends JavaPlugin implements Listener{
             try {
                 reloadCustomConfig();
             }catch (UnsupportedEncodingException err){
-                getLogger().log(Level.SEVERE,"unable to read data from jar",err);
+                getLogger().log(Level.SEVERE,"unable to read config file because of it is not encoding as UTF8",err);
             }
         }
         return customConfig;
@@ -519,7 +525,7 @@ public final class Scord extends JavaPlugin implements Listener{
         if(getCustomConfig().getInt("maxmiumleaders")>0){
             NUM = getCustomConfig().getInt("maxmiumleaders");
         }
-        List blacklist = getCustomConfig().getList("blacklist");
+        List<?> blacklist = getCustomConfig().getList("blacklist");
         List<String> list= Lists.newArrayList();
         Map<String,Integer> map = Data;
         for(Map.Entry<String, Integer> entry : map.entrySet()){
