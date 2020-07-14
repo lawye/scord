@@ -7,9 +7,30 @@ a spigot plugin to count miner's work
 
 - /scord on|off
 - /scord player [player] config|score [exp]
-- /scord board title|numberprefix|nameprefix|maxiumleaders set [exp]
-- /scord blacklist add|remove|find|isin [player]
+- /scord reload
 
+> 不使用
+
+> /scord board title|numberprefix|nameprefix|maxiumleaders set [exp]
+
+> /scord blacklist add|remove|find|isin [player]
+
+
+plugin.yml backup
+```yaml
+  scord on:
+    description: display scord
+    usage: /<command>
+  scord off:
+    description: not display scord
+    usage: /<command>
+  scord player:
+    description: set one player's data and setting
+    usage: /<command> <player>[config|score] [number]
+  scord reload:
+    description: reload config file
+    usage: /command>
+```
 ## permission
 
 - scord.*

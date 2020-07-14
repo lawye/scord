@@ -7,7 +7,7 @@ website: lawye.github.io
 commands:
   scord:
     description: all control of this plugin
-    usage: /<command> [on|off]|/<command> player [player] [score|config] [args]|/<command> board [title|numberprefix|maxmiumleaders|nameprefix] set [expression]|/<command> blacklist [add|remove|find] [player]
+    usage: /<command> [on|off]|/<command> reload|/<command> player [player] [config|score] [number]
 permissions:
   scord.*:
     description: anything

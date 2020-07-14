@@ -98,7 +98,7 @@ public final class Scord extends JavaPlugin implements Listener{
         String pmsion = "you don't have permission to access this command";
         String tfargs = "there is too few arguments";
         String tmargs = "there is too many arguments";
-        List<String> yaml=new ArrayList<String>(Arrays.asList("title","numberprefix","maxmiumleaders","nameprefix"));
+        //List<String> yaml=new ArrayList<String>(Arrays.asList("title","numberprefix","maxmiumleaders","nameprefix"));
         if(cmd.getName().equalsIgnoreCase("scord")){
             if(args.length==0){
                 sender.sendMessage(tfargs);
@@ -110,6 +110,9 @@ public final class Scord extends JavaPlugin implements Listener{
                     if(sender.hasPermission("scord.basic")){
                         if(args.length==1){
                             PlayerSetting.put(sender.getName(), 1);
+                            update_board(first());
+                            sender.sendMessage("your display setting for scord is successfully changed");
+                            return true;
                         }else{
                             sender.sendMessage("too many arguments");
                             return false;
@@ -127,6 +130,9 @@ public final class Scord extends JavaPlugin implements Listener{
                     if(sender.hasPermission("scord.basic")){
                         if(args.length==1){
                             PlayerSetting.put(sender.getName(), 0);
+                            update_board(first());
+                            sender.sendMessage("your display setting for scord is successfully changed");
+                            return true;
                         }else{
                             sender.sendMessage("too many arguments");
                             return false;
@@ -171,6 +177,35 @@ public final class Scord extends JavaPlugin implements Listener{
                     sender.sendMessage(pmsion);
                     return false;
                 }
+            }else if(args[0].equalsIgnoreCase("reload")){
+                if(sender.hasPermission("scord.set")){
+                    if(args.length==1){
+                        /*
+                        if(customConfigFile == null){
+                            customConfigFile=new File(getDataFolder(),"config.yml");
+                        }
+                        customConfig = YamlConfiguration.loadConfiguration(customConfigFile);
+                        */
+                        try{
+                        reloadCustomConfig();
+                        }catch(UnsupportedEncodingException err){
+                            sender.sendMessage("config file encoding error");
+                            err.printStackTrace();
+                        }
+                        //reloadConfig();
+                        //saveCustomConfig();
+                        sender.sendMessage("config reloaded");
+                        update_board(first());
+                        return true;
+                    }else{
+                        sender.sendMessage(tmargs);
+                        return false;
+                    }
+                }else{
+                    sender.sendMessage(pmsion);
+                    return false;
+                }
+                /*
             }else if(args[0].equalsIgnoreCase("board")){
                 if(sender.hasPermission("scord.set")){
                     if(args.length==4){
@@ -201,9 +236,14 @@ public final class Scord extends JavaPlugin implements Listener{
             }else if(args[0].equalsIgnoreCase("blacklist")){
                 if(sender.hasPermission("scord.set")){
                     if(args.length==3){
-                        List<String> list = getCustomConfig().getList("blacklist", new ArrayList<String>());
+                        List<?> list = getCustomConfig().getList("blacklist");
                         if(args[1].equalsIgnoreCase("add")){
-                            list.add(args[2]);
+                            try {
+                                list.add(args[2]);
+                            } catch (UnsupportedOperationException e) {
+                                sender.sendMessage("not support this name");
+                                e.printStackTrace();
+                            }
                             getCustomConfig().set("blacklist", list);
                             saveCustomConfig();
                         }else if(args[1].equalsIgnoreCase("remove")){
@@ -226,7 +266,10 @@ public final class Scord extends JavaPlugin implements Listener{
                 }else{
                     sender.sendMessage(pmsion);
                     return false;
-                }
+                }*/
+            }else{
+                sender.sendMessage(wrargs);
+                return false;
             }
         }else{
             sender.sendMessage(wrargs);
@@ -338,7 +381,7 @@ public final class Scord extends JavaPlugin implements Listener{
         }
 
          */
-        return false;
+        //return false;
     }
 
     public HashMap<String,Integer> loadDB(String url){
