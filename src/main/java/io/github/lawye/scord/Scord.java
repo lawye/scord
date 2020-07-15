@@ -496,16 +496,21 @@ public final class Scord extends JavaPlugin implements Listener{
         }
     }
 
-     */
-
+    */
+    
     public void update_board(List<String> leader){
         ScoreboardManager manager=Bukkit.getScoreboardManager();
         assert manager != null;
-        Scoreboard scoreboard = manager.getNewScoreboard();
+        //Scoreboard scoreboard = manager.getNewScoreboard();
         Scoreboard empty = manager.getNewScoreboard();
         for (Player player : Bukkit.getOnlinePlayers()) {
+            board(player, leader);
+        }
+        }
+        /*
             //Scoreboard scoreboard = player.getScoreboard();
             //if(true){
+                
             if (PlayerSetting.get(player.getName()) == 1) {
                 //getLogger().info("开始启动"+player.getName()+"的榜");
                 Objective obj = scoreboard.registerNewObjective(player.getName()+"scord", "dummy", getCustomConfig().getString("title").replace("&","§"), RenderType.HEARTS);
@@ -526,6 +531,7 @@ public final class Scord extends JavaPlugin implements Listener{
                     //getLogger().info("现在应该ok");
                     player.setScoreboard(scoreboard);
                 }
+                */
                 /*
                 if (leader.size() >= 5) {
                     for (int i = 0; i < 5; i++) {
@@ -542,11 +548,11 @@ public final class Scord extends JavaPlugin implements Listener{
                 nw.setScoreboard(scoreboard);
 
                  */
+                /*
             } else {
                 player.setScoreboard(empty);
             }
-        }
-    }
+            */
 /*
     public void show_board(List<String> leader, Player player){
         ScoreboardManager manager = Bukkit.getScoreboardManager();
@@ -601,5 +607,28 @@ public final class Scord extends JavaPlugin implements Listener{
         return list;
     }
 
+    private void board(Player player, List<String> leader){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getNewScoreboard();
+        if(PlayerSetting.get(player.getName())!=0){
+            Objective obj = scoreboard.registerNewObjective("scord", "dummy", getCustomConfig().getString("title").replace("&","§"), RenderType.HEARTS);
+            obj.setDisplaySlot(DisplaySlot.SIDEBAR);
+            if(leader.size()<1){
+                //getLogger().info("没人可以排");
+                return;
+            }else {
+                int n = leader.size();
+                int i =1;
+                for(String name:leader){
+                    obj.getScore(getCustomConfig().getString("numberprefix").replace("&","§") + i + getCustomConfig().getString("nameprefix").replace("&","§") + name + getCustomConfig().getString("scoreprefix").replace("&","§") + Data.get(name)).setScore(n - i+1);
+                    //getLogger().info("初始化"+i);
+                    i++;
+                }
+                obj.getScore("§f<" + player.getName() + ">: §6" + Data.get(player.getName())).setScore(0);
+                player.setScoreboard(scoreboard);
+        }
+    }else{
+        Objective empty = scoreboard.registerNewObjective("empty", "dummy","title");
+        player.setScoreboard(scoreboard);
+    }
 }
-
