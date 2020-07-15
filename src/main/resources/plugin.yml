@@ -1,6 +1,6 @@
 name: Scord
 main: io.github.lawye.scord.Scord
-version: 1.1
+version: 1.2
 api-version: 1.16
 author: lawye
 website: lawye.github.io

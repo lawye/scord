@@ -508,7 +508,7 @@ public final class Scord extends JavaPlugin implements Listener{
             //if(true){
             if (PlayerSetting.get(player.getName()) == 1) {
                 //getLogger().info("开始启动"+player.getName()+"的榜");
-                Objective obj = scoreboard.registerNewObjective("scord", "dummy", getCustomConfig().getString("title").replace("&","§"), RenderType.HEARTS);
+                Objective obj = scoreboard.registerNewObjective(player.getName()+"scord", "dummy", getCustomConfig().getString("title").replace("&","§"), RenderType.HEARTS);
                 obj.setDisplaySlot(DisplaySlot.SIDEBAR);
                 if(leader.size()<1){
                     //getLogger().info("没人可以排");
