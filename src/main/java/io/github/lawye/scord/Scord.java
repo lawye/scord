@@ -626,9 +626,10 @@ public final class Scord extends JavaPlugin implements Listener{
                 }
                 obj.getScore("§f<" + player.getName() + ">: §6" + Data.get(player.getName())).setScore(0);
                 player.setScoreboard(scoreboard);
+             }
+        }else{
+            Objective empty = scoreboard.registerNewObjective("empty", "dummy","title");
+            player.setScoreboard(scoreboard);
         }
-    }else{
-        Objective empty = scoreboard.registerNewObjective("empty", "dummy","title");
-        player.setScoreboard(scoreboard);
     }
 }
