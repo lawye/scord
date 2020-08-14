@@ -5,7 +5,13 @@ maxmiumleaders: 5 # 挖掘榜上最大显示人数
 numberprefix: "&6No." #数字前缀
 nameprefix: " &4" # 数字后名字前的文字
 scoreprefix: " §e" # 成绩前缀（一般可以用样式代码）
-blacklist: # 你不希望在列表上显示的人
+tools: # 你希望统计的工具的名字
+# 注意，以下的设置有先后顺序， 相当于对可用列表进行操作，不理解这句话的意思的人可以把所有工具的全名打在下面，如"DIAMOND_PICKAXE"
+  - _PICKAXE # 前面带"_"则统计所有种类的这种工具
+  - GOLDEN_ #后面带"_"则统计所有这种材料的工具
+  #- NOTATOOL # 不是一个工具，所有非工具会加入统计（不包括空手）
+  #- EMPTYHAND # 空手
+blacklist: # 你不希望统计的人
   - herobine
   - jeb_
   - norch

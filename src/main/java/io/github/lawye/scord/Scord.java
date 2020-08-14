@@ -205,6 +205,7 @@ public final class Scord extends JavaPlugin implements Listener{
                     sender.sendMessage(pmsion);
                     return false;
                 }
+                // TODO:在线修改blacklist
                 /*
             }else if(args[0].equalsIgnoreCase("board")){
                 if(sender.hasPermission("scord.set")){
@@ -459,12 +460,80 @@ public final class Scord extends JavaPlugin implements Listener{
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
         Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
+
+        //查看空手以及其他物品代码
+        event.getPlayer().sendMessage(tool.name());
+
+        ArrayList<Material> tools;
+        Boolean ntat = false, empth = false;
+
+        String[] digger = new String[5];
+        digger[0]="PICKAXE";
+        digger[1]="AXE";
+        digger[2]="SHOVEL";
+        digger[3]="SWORD";
+        digger[4]="HOE";
+
+        String[] dMaterial = new String[6];
+        dMaterial[0]="WOOD";
+        dMaterial[1]="STONE";
+        dMaterial[2]="STEEL";
+        dMaterial[3]="GOLDEN";
+        dMaterial[4]="DIAMOND";
+        dMaterial[5]="NETHERITE";
+
+        // TODO:处理可用的工具
+        List<?> customtoolconfig = customConfig.getList("tools");
+        if(customtoolconfig==null){
+            tools.clear();
+        }else{
+            for(String tmp : customtoolconfig){
+                if(Material.getMaterial(tmp) != null){
+                    tools.add(Material.getMaterial(tmp));
+                }else if(tmp.charAt(0)=='_'){
+                    for(String pref : dMaterial){
+                        if(!tools.contains(Material.getMaterial(pref+tmp))) tools.add(Material.getMaterial(pref+tmp));
+                    }
+                }else if(tmp.charAt(tmp.length()-1)=='_'){
+                    for(String aftf : digger){
+                        if(!tools.contains(Material.getMaterial(tmp+aftf))) tools.add(Material.getMaterial(tmp+aftf));
+                    }
+                }else if(tmp.equals("NOTATOOL")){
+                    ntat=true;
+                }else if(tmp.equals("EMPTYHAND")){
+                    empth = true;
+                }
+            }
+        }
+        if(tool!=null){
+            if(ntat){
+                Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
+                saveDB(Data,DataURL);
+                update_board(first());
+            }else{
+                if(tools.contains(tool)){
+                    Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
+                    saveDB(Data,DataURL);
+                    update_board(first());
+                }
+            }
+        }else{
+            if(empth){
+                Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
+                saveDB(Data,DataURL);
+                update_board(first());
+            }
+        }
+
+        /*
         if(tool==Material.WOODEN_PICKAXE || tool==Material.STONE_PICKAXE || tool==Material.IRON_PICKAXE || tool==Material.GOLDEN_PICKAXE || tool==Material.DIAMOND_PICKAXE || tool==Material.NETHERITE_PICKAXE){
+            // TODO:处理黑名单
             Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
             saveDB(Data,DataURL);
             update_board(first());
             //tab_board();
         }
+        */
     }
 
     @EventHandler
