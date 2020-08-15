@@ -28,6 +28,10 @@ public final class Scord extends JavaPlugin implements Listener{
     public HashMap<String,Integer> Data = new HashMap<String, Integer>();
     public HashMap<String,Integer> PlayerSetting = new HashMap<String, Integer>();
 
+    public ArrayList<Material> tools = new ArrayList<Material>();
+    public List<String> privlist = new ArrayList<String>();
+    public boolean ntat = false;
+
     //public int NUM = 5;
     //public FileConfiguration CONFIG;
 
@@ -89,7 +93,7 @@ public final class Scord extends JavaPlugin implements Listener{
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.setScoreboard(empty);
         }
-        getLogger().info("Scord down");
+        getLogger().info("Scord off.");
     }
 
     @Override
@@ -455,35 +459,12 @@ public final class Scord extends JavaPlugin implements Listener{
             YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defCustomStream);
             customConfig.setDefaults(defConfig);
         }
-    }
 
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event){
-        Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
-
-        //查看空手以及其他物品代码
-        event.getPlayer().sendMessage(tool.name());
-
-        ArrayList<Material> tools;
-        Boolean ntat = false, empth = false;
-
-        String[] digger = new String[5];
-        digger[0]="PICKAXE";
-        digger[1]="AXE";
-        digger[2]="SHOVEL";
-        digger[3]="SWORD";
-        digger[4]="HOE";
-
-        String[] dMaterial = new String[6];
-        dMaterial[0]="WOOD";
-        dMaterial[1]="STONE";
-        dMaterial[2]="STEEL";
-        dMaterial[3]="GOLDEN";
-        dMaterial[4]="DIAMOND";
-        dMaterial[5]="NETHERITE";
-
-        // TODO:处理可用的工具
-        List<?> customtoolconfig = customConfig.getList("tools");
+        String[] digger = {"PICKAXE","AXE","SHOVEL","SWORD","HOE"};
+        String[] dMaterial = {"WOOD","STONE","STEEL","GOLDEN","DIAMOND","NETHERITE"};
+        
+        privlist = customConfig.getStringList("privatelist");
+        List<String> customtoolconfig = customConfig.getStringList("tools");
         if(customtoolconfig==null){
             tools.clear();
         }else{
@@ -501,10 +482,20 @@ public final class Scord extends JavaPlugin implements Listener{
                 }else if(tmp.equals("NOTATOOL")){
                     ntat=true;
                 }else if(tmp.equals("EMPTYHAND")){
-                    empth = true;
+                    tools.add(Material.AIR);
+                    //empth = true;
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event){
+        Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
+        //if(blacklist.contains(event.getPlayer().getName())) return;
+        //查看空手以及其他物品代码
+        //event.getPlayer().sendMessage(tool.name());
+
         if(tool!=null){
             if(ntat){
                 Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
@@ -516,12 +507,6 @@ public final class Scord extends JavaPlugin implements Listener{
                     saveDB(Data,DataURL);
                     update_board(first());
                 }
-            }
-        }else{
-            if(empth){
-                Data.put(event.getPlayer().getName(),Data.get(event.getPlayer().getName())+1);
-                saveDB(Data,DataURL);
-                update_board(first());
             }
         }
 
@@ -568,10 +553,10 @@ public final class Scord extends JavaPlugin implements Listener{
     */
     
     public void update_board(List<String> leader){
-        ScoreboardManager manager=Bukkit.getScoreboardManager();
-        assert manager != null;
+        //ScoreboardManager manager=Bukkit.getScoreboardManager();
+        //assert manager != null;
         //Scoreboard scoreboard = manager.getNewScoreboard();
-        Scoreboard empty = manager.getNewScoreboard();
+       // Scoreboard empty = manager.getNewScoreboard();
         for (Player player : Bukkit.getOnlinePlayers()) {
             board(player, leader);
         }
@@ -643,11 +628,13 @@ public final class Scord extends JavaPlugin implements Listener{
         if(getCustomConfig().getInt("maxmiumleaders")>0){
             NUM = getCustomConfig().getInt("maxmiumleaders");
         }
-        List<?> blacklist = getCustomConfig().getList("blacklist");
+
+        //List<String> blacklist = getCustomConfig().getStringList("blacklist");
         List<String> list= Lists.newArrayList();
         Map<String,Integer> map = Data;
         for(Map.Entry<String, Integer> entry : map.entrySet()){
-            if(blacklist.contains(entry.getKey()))continue;
+            //不排序blacklist
+            if(privlist.contains(entry.getKey()))continue;
             if(list.isEmpty()){
                 list.add(entry.getKey());
             }else if(list.size()<NUM){
