@@ -491,7 +491,11 @@ public final class Scord extends JavaPlugin implements Listener{
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
-        Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
+        if(event.getPlayer()!=null){
+            Material tool=event.getPlayer().getInventory().getItemInMainHand().getType();
+        }else{
+            return;
+        }
         //if(blacklist.contains(event.getPlayer().getName())) return;
         //查看空手以及其他物品代码
         //event.getPlayer().sendMessage(tool.name());
